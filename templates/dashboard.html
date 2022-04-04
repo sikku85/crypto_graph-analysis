@@ -1,0 +1,56 @@
+{% extends "layout.html" %} {% block body %}
+
+<header
+  class="masthead"
+  style="background-image: url('{{url_for('static',filename='assets/img/home-bg.jpg ')}}')"
+>
+  <div class="container position-relative px-4 px-lg-5">
+    <div class="row gx-4 gx-lg-5 justify-content-center">
+      <div class="col-md-10 col-lg-8 col-xl-7">
+        <div class="site-heading">
+          <h1>Admin Panel</h1>
+          <span class="subheading">Manage Posts and Save it </span>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+</header>
+<h1 style="display: flex; justify-content: center; padding-bottom: 2%;" >Manage Posts</h1>
+<a style="border-radius: 10px; padding-left: 1vw;" href="/edit/0"><button class="btn btn-success" > Add post</button> </a>
+<a style="padding: 2vw;" href="/logout"><button class="btn btn-success" > Log out</button> </a>
+
+
+
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">sno</th>
+        <th scope="col">Title</th>
+        <th scope="col">Date</th>
+        <th scope="col">Edit</th>
+        <th scope="col">Delete</th>
+
+      </tr>
+    </thead>
+    <tbody>
+
+        {% for post in posts %}
+
+
+      <tr>
+        <td>{{post.sno}}</td>
+        <td>{{post.title}}</td>
+        <td>{{post.date}}</td>
+        <td ><a href="/edit/{{post.sno}}"><button style="border-radius: 10px;" class="btn btn-success">Edit</button></a></td>
+        <td><a href="/delete/{{post.sno}}"></a><button style="border-radius: 10px;" class="btn btn-danger" disabled>Delete</button></td>
+
+
+      </tr>
+      {% endfor %}
+      
+    </tbody>
+  </table>
+ 
+
+{% endblock %}

@@ -1,0 +1,45 @@
+{% extends "layout.html" %}
+{% block body %}
+        <!-- Page Header-->
+        <header class="masthead" style="background-image: url('{{url_for('static',filename='assets/img/post-bg.jpg ')}}')">
+            <div class="container position-relative px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-md-10 col-lg-8 col-xl-7">
+                        <div class="post-heading">
+                            <h1>{{post.title}}</h1>
+                            <h2 class="subheading" style="color: aqua;">{{post.tagline}}</h2>
+                            <span class="meta">
+                                Posted by
+                                <a href="#!">{{post.name}}</a>
+                                {{post.date}}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <!-- Post Content-->
+        <article class="mb-4">
+            <div class="container px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-md-10 col-lg-8 col-xl-8">
+                        <strong>Types of Block-chain Technology</strong>
+                        <p>There are four types of blockchain structures:  </p>
+                        <ol>
+                            <li><h5>Public Block-Chain</h5>Public blockchains are permissionless in nature, allow anyone to join, and are completely decentralized.  Public blockchains allow all nodes of the blockchain to have equal rights to access the blockchain, create new blocks of data, and validate blocks of data. 
+
+                                To date, public blockchains are primarily used for exchanging and mining cryptocurrency.  You may have heard of popular public blockchains such as Bitcoin, Ethereum, and Litecoin.  On these public blockchains, the nodes “mine” for cryptocurrency by creating blocks for the transactions requested on the network by solving cryptographic equations.  In return for this hard work, the miner nodes earn a small amount of cryptocurrency. The miners essentially act as new era bank tellers that formulate a transaction and receive (or “mine”) a fee for their efforts.</li>
+                            <li><h5>Private (or Managed) Blockchains</h5>Private blockchains, which may also be referred to as managed blockchains, are permissioned blockchains controlled by a single organization. In a private blockchain, the central authority determines who can be a node.  The central authority also does not necessarily grant each node with equal rights to perform functions.  Private blockchains are only partially decentralized because public access to these blockchains is restricted.  Some examples of private blockchains are the business-to-business virtual currency exchange network Ripple and Hyperledger, an umbrella project of open-source blockchain applications.
+
+                                Both private and public blockchains have drawbacks - public blockchains tend to have longer validation times for new data than private blockchains, and private blockchains are more vulnerable to fraud and bad actors. To address these drawbacks, consortium and hybrid blockchains were developed. </li>
+                            <li><h5>Consortium Blockchains</h5>Consortium blockchains are permissioned blockchains governed by a group of organizations, rather than one entity, as in the case of the private blockchain.  Consortium blockchains, therefore, enjoy more decentralization than private blockchains, resulting in higher levels of security.  However, setting up consortiums can be a fraught process as it requires cooperation between a number of organizations, which presents logistical challenges as well as potential antitrust risk (which we will examine in an upcoming article). Further, some members of supply chains may not have the needed technology nor the infrastructure to implement blockchain tools, and those that do may decide the upfront costs are too steep a price to pay to digitize their data and connect to other members of the supply chain.</li>
+                            <li><h5>Hybrid blockchains</h5>Hybrid blockchains are blockchains that are controlled by a single organization, but with a level of oversight performed by the public blockchain, which is required to perform certain transaction validations.  An example of a hybrid blockchain is IBM Food Trust, which was developed to improve efficiency throughout the whole food supply chain. We will discuss IBM Food Trust in more detail in an upcoming article in this series.</li>
+                        </ol>
+                    </div>
+                    <a href="/types_of_blockchain/{{post.slug}}"></a>
+                </div>
+            </div>
+        </article>
+       
+
+{% endblock %}
