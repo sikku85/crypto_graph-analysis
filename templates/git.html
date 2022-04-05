@@ -1,0 +1,40 @@
+{% extends "layout.html" %}
+{% block body %}
+        <!-- Page Header-->
+        <header class="masthead" style="background-image: url('{{url_for('static',filename='assets/img/git-bg.jpg ')}}')">
+            <div class="container position-relative px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-md-10 col-lg-8 col-xl-7">
+                        <div class="post-heading">
+                            <h1>{{post.title}}</h1>
+                            <h2 class="subheading" style="color: aqua;">{{post.tagline}}</h2>
+                            <span class="meta">
+                                Posted by
+                                <a href="#!">{{post.name}}</a>
+                                {{post.date}}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <!-- Post Content-->
+        <article class="mb-4">
+            <div class="container px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-md-10 col-lg-8 col-xl-7">
+                        <strong>GITHUB</strong>
+                        <h5>What is Git? </h5>
+                        <p>git is a version control system used for tracking changes in computer files, making it a top-rated utility for programmers world-wide. Git can handle projects of any size.
+                             <br>Git is used to coordinate the workflow among project team members and track their progress over time. It also benefits both programmers and non-technical users by keeping track of their project files. Git allows multiple users to work together without disrupting each other’s work. </p>
+                        <br>
+                        <h5>What is GitHub?</h5>
+                        <p>GitHub is a Git repository hosting service that provides a web-based graphical interface. It is the world’s largest coding community. Putting a code or a project into GitHub brings it increased, widespread exposure. Programmers can find source codes in many different languages and use the command-line interface, Git, to make and keep track of any changes. <br> GitHub helps every team member work together on a project from any location while facilitating collaboration. You can also review previous versions created at an earlier point in time.</p>
+                    </div>
+                    <a href="/git/{{post.slug}}"></a>
+                </div>
+            </div>
+        </article>
+       
+
+{% endblock %}

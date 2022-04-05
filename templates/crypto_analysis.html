@@ -1,0 +1,29 @@
+{% extends "layout.html" %}
+{% block body %}
+<header class="masthead" style="background-image: url('{{url_for('static',filename='assets/img/crypto-bg.jpg ')}}')">
+    <div class="container position-relative px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-md-10 col-lg-8 col-xl-7">
+                <div class="post-heading">
+                    <h1 style="display: flex;justify-content: center;">MA SUPPORT</h1>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+      
+        <!-- Post Content-->
+        <br>
+    
+        <body style="background-color: lightblue;">
+            <p style="display: flex; justify-content: center; font-size: xx-large;">THIS IS THE LIST OF COIN AT SUPPORT LEVEL OF_<span style="color: white;">50MA </span>_ AND IN TIME FRAME OF_<span style="color: white;">4-HOUR</span> </p>
+            <br>
+            <h3 style="padding-left: 1vw;">{{result}}</h3>
+            <br>
+            <br>
+            <h4 style="display: flex;justify-content: center;">THIS WILL TAKE HARDLY 1 MINUTES TO NEW DATA AFTER REFRESING PAGE </h4>
+        </body>
+       
+
+{% endblock %}

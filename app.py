@@ -1,16 +1,32 @@
 
 from datetime import datetime
 from tokenize import Name
+from turtle import pos
 from unicodedata import name
 from flask import Flask, render_template, request, session,redirect
 from flask_sqlalchemy import SQLAlchemy
 import json
 import requests
 import math
+from binance.client import Client
+import time
+import pandas as pd
+import numpy as np
+import talib as tb
+import requests
+from os import name
+from re import X
+
 
 
 from flask_mail import Mail
 local_server = True
+
+API="P2yrxGhNsaxz58CsbTsMdS5PTj6gu3fw8f0lCjJtU6e8Qkzr6Sn4UEwOjnkBlmTk"
+KEY="ulnJEujaziK1mBKNM5GXcHWljFpHs0fSqnuWx6sBMNYQ4wYDAvibKCjqDC5SqWew"
+client=Client(API,KEY)
+analysis_result=[]
+
 with open('config.json', 'r') as c:
     params = json.load(c)["params"]
 
@@ -113,7 +129,7 @@ def post_route(post_slug):
 @app.route("/about")
 def about():
     return render_template('about.html', params=params)
-   # ------------------------------------------------
+   # ---------------------------------------------------------------------------
 @app.route("/posting/<string:post_slug>", methods=['GET'])
 def post_rout(post_slug):
     post = Posts.query.filter_by(slug=post_slug).first()
@@ -129,7 +145,13 @@ def post_rout3(post_slug):
     post = Posts.query.filter_by(slug=post_slug).first()
     return render_template('types_of_blockchain.html', params=params, post=post)
 
-#-------------------------------------------------------------------
+@app.route("/git/<string:post_slug>", methods=['GET'])
+def git(post_slug):
+    post = Posts.query.filter_by(slug=post_slug).first()
+    return render_template('git.html', params=params, post=post)
+
+
+#-------------------------------------------------------------------------------------------------
 
 
 @app.route("/dashboard", methods=['GET', 'POST'])
@@ -214,6 +236,63 @@ def delete(sno):
          db.session.delete(post)
          db.session.commit()
      return redirect('/dashboard')
+#--------------crypto_analyssis-------------------------------------
+
+@app.route("/crypto_analysis")
+def crypto_analysis():
+ analysis_result.clear()
+
+
+ def _EMA(name,period):
+  coin=name
+  time_Period=int(period)
+  klines = client.get_historical_klines(coin, Client.KLINE_INTERVAL_4HOUR, "10 day ago UTC")
+  data=pd.DataFrame(klines)
+  EMA=tb.MA(data[4], time_Period)
+
+  coin_name,current_price,EMA_c=[],[],[]
+  coin_name.append(coin)
+  current_price.append(float(data[4][len(data)-1]))
+  EMA_c.append(EMA[len(EMA)-1])
+  dict={
+    "COINS":coin_name,
+    "PRICE":current_price,
+    f"EMA({time_Period})":EMA_c
+  }
+ 
+  data=pd.DataFrame(dict)
+  k=(float((data['PRICE']-data[f"EMA({time_Period})"]))/data['PRICE'])*100
+  #print(float(k))
+  if(float(k)<=0.5 and float(k)>=0 ):
+   # telegram_bot_sendtext(dict['COINS'])
+    analysis_result.append(dict['COINS'])
+
+ prices = client.get_all_tickers()
+ usdt=[]
+ top=int(1000)
+ datasymbol=pd.DataFrame(prices)
+ i=0
+ while(i<top):
+  if(datasymbol.head(top)['symbol'][i]).endswith("USDT"):
+    usdt.append(datasymbol.head(top)['symbol'][i])
+   
+  i=i+1
+
+ for i in range(0,len(usdt)):
+  try:
+   _EMA(usdt[i],50)
+  except:
+    continue
+
+
+
+ result=analysis_result
+ return render_template('crypto_analysis.html',params=params,post=post,result=result)
+
+ 
+    
+     
+    
 
 
 
