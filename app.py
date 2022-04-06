@@ -1,8 +1,3 @@
-
-from datetime import datetime
-from tokenize import Name
-from turtle import pos
-from unicodedata import name
 from flask import Flask, render_template, request, session,redirect
 from flask_sqlalchemy import SQLAlchemy
 import json
@@ -269,7 +264,7 @@ def crypto_analysis():
 
  prices = client.get_all_tickers()
  usdt=[]
- top=int(1000)
+ top=int(500)
  datasymbol=pd.DataFrame(prices)
  i=0
  while(i<top):
@@ -288,6 +283,53 @@ def crypto_analysis():
 
  result=analysis_result
  return render_template('crypto_analysis.html',params=params,post=post,result=result)
+
+
+
+@app.route("/crypto_analysis2")
+def cryto_analysis2():
+    analysis_result=[]
+    def _EMA(name,period1,period2):
+        coin=name
+        time_Period=int(period1)
+        time_Period2=int(period2)
+        klines = client.get_historical_klines(coin, Client.KLINE_INTERVAL_15MINUTE, "10 day ago UTC")
+        data=pd.DataFrame(klines)
+        EMA=tb.EMA(data[4], time_Period)
+        EMA2=tb.EMA(data[4],time_Period2)
+        RSI=tb.RSI(data[4],14)
+        k=(float(EMA[len(EMA)-1])-float(EMA2[len(EMA)-1]))/float(EMA[len(EMA)-1])*100
+
+        if(float(k)<=0.05 and float(k)>=0):
+          analysis_result.append(str('[')+str(coin)+":RSI(14)Val:"+str(RSI[len(RSI)-1])+str(']'))
+    
+
+    prices = client.get_all_tickers()
+    usdt=[]
+    top=int(1000)
+    datasymbol=pd.DataFrame(prices)
+    i=0
+    while(i<top):
+     if(datasymbol.head(top)['symbol'][i]).endswith("USDT"):
+       usdt.append(datasymbol.head(top)['symbol'][i])
+   
+     i=i+1
+    
+
+    for i in range(0,len(usdt)):
+     try:
+      _EMA(usdt[i],50,13)
+     except:
+       continue
+
+
+
+    return render_template('crypto_analysis2.html', params=params, post=post,analysis_result=analysis_result)
+
+
+@app.route("/graph")
+def graph():
+    return render_template('graph_analysis.html', params=params)
 
  
     

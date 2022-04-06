@@ -1,0 +1,58 @@
+{% extends "layout.html" %}
+{% block body %}
+<header class="masthead" style="background-image: url('{{url_for('static',filename='assets/img/crypto-bg.jpg ')}}')">
+    <div class="container position-relative px-4 px-lg-5">
+        <div class="">
+            <div class="">
+                <div class="post-heading">
+                    <h1  style="display: flex;justify-content: center;">MA SUPPORT</h1>
+
+                    
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+      
+        <!-- Post Content-->
+        <style>
+            .btn{
+                opacity: 1;
+                transition: 0.3s;
+            }
+            .btn:hover{
+                opacity: 0.6;
+            }
+        </style>
+        
+        <br>
+        <h4 style="display: flex; justify-content: center;">IT WILL HARDLY 1 MINUTES TO FETCH DATA </h4>
+        <br>
+        <div style="display: flex; justify-content: center; flex-direction: column; align-items: center;">
+            <div> <span>COINS AT 50 MA SUPPORT </span>  <a href="/crypto_analysis">  <button id="cli" class="btn"  style="border-radius: 10px; background-color: green; color: white;" >CLICK HERE</button> </a></div>
+            <br>
+            <div> <span>COINS HOLIDNG SUPPORT 50 EMA  AND 13 EMA SUPPORT </span>  <a href="/crypto_analysis2">  <button id="cli2" class="btn" style="border-radius: 10px; background-color: green; color: white;" >CLICK HERE</button> </a></div>
+           
+
+            <script>
+                var k=document.getElementById("cli")
+                k.addEventListener("click",function(){
+                    this.disabled=true;
+                    k.classList.remove('hover');
+                })
+
+                var k=document.getElementById("cli2")
+                k.addEventListener("click",function(){
+                    this.disabled=true;
+                    k.classList.remove('hover');
+                })
+            </script>
+        </div>
+        <br>
+        <br>
+    
+
+       
+
+{% endblock %}
