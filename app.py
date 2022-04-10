@@ -11,6 +11,7 @@ import talib as tb
 import requests
 from os import name
 from re import X
+import datetime
 
 
 
@@ -100,19 +101,9 @@ def Home():
         next="/?page="+str(page+1)
         prev="/?page="+str(page-1)
         
-
-
-
-
-
+   
     
-    key = "https://api.binance.com/api/v3/ticker/price?symbol=BTCUSDT"
-
-    # requesting data from url
-    data = requests.get(key)
-    data = data.json()
-    price = (f"{data['symbol']} price is {data['price']}")
-    return render_template('index.html', params=params, price=price, posts=posts,prev=prev,next=next)
+    return render_template('index.html', params=params, posts=posts,prev=prev,next=next)
 
 
 @app.route("/post/<string:post_slug>", methods=['GET'])
@@ -202,7 +193,7 @@ def edit(sno):
              slug=request.form.get('slug')
              content=request.form.get('content')
              name=request.form.get('name')
-             date=datetime.now()
+             date=datetime.datetime.now()
              if sno=='0':
               post=Posts(title=title,slug=slug,content=content,tagline=tline,date=date,name=name)
               db.session.add(post)
@@ -264,7 +255,7 @@ def crypto_analysis():
 
  prices = client.get_all_tickers()
  usdt=[]
- top=int(500)
+ top=int(1000)
  datasymbol=pd.DataFrame(prices)
  i=0
  while(i<top):
@@ -330,6 +321,9 @@ def cryto_analysis2():
 @app.route("/graph")
 def graph():
     return render_template('graph_analysis.html', params=params)
+@app.route("/notes")
+def notes():
+    return render_template('notes.html', params=params)
 
  
     

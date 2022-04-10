@@ -1,9 +1,12 @@
 {% extends "layout.html" %} {% block body %}
 <!-- Page Header-->
+
+
 <header
   class="masthead"
   style="background-size: cover; background-image: url('{{url_for('static',filename='assets/img/home-bg.jpg ')}}')"
 >
+
   <div class="container position-relative px-4 px-lg-5">
     <div class="row gx-4 gx-lg-5 justify-content-center">
       <div class="col-md-10 col-lg-8 col-xl-7">
@@ -12,11 +15,27 @@
           <span style="color: beige; padding-left: 20vw; font-family: 'Send Flowers', cursive; font-size: xx-large ;font-weight: bold;"  class="subheading">Free To ask any Time</span>
           <span class="site-heading"
             ><p style="font-size: xx-large; display: flex; justify-content:space-around; color: lightgreen ">
+            
+
               <br>
               <br>
               <br>
-             <span style="display: flex; justify-content: left;">{{price}}</span> 
-            </p></span
+              <style>
+                .size
+                {
+                  font-size: x-large;
+                }
+              </style>
+             <div style="display: flex; justify-content:center;flex-direction: row;">
+               <div id="symbol" class="size" style="margin-right: 10px;">BTCUSDT</div>
+               <div id="price" class="size">00000</div>
+             </div> 
+            </p>
+           
+           
+          
+          
+            </span
           >
         </div>
       </div>
@@ -24,7 +43,7 @@
   </div>
 </header>
 <!-- Main Content-->
-<div class="container px-4 px-lg-5" style="background-color: lightblue;">
+<div class="container  ">
   
   <div class="row gx-4 gx-lg-5 justify-content-center">
     <div class="col-md-10 col-lg-8 col-xl-7">
@@ -47,6 +66,7 @@
           on {{post.date}}
         </p>
       </div>
+      
       
       {% endfor %}
 
