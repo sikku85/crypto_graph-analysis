@@ -12,6 +12,17 @@
         </div>
     </div>
 </header>
+<div class="wrap">
+    <div class="search" style="padding: 10px;">
+       <input type="text" style="color: black;" class="searchTerm" id="textarea" placeholder="coins to get current Price (BTCUSDT)">
+       <button type="submit" class="searchButton" id="buttonsearch">
+         <i class="fa fa-search"></i>
+      </button>
+    </div>
+    <div class="current_price">
+      <h5 style="color: white ; display: flex; justify-content: center;" ><span id="title">Btc: </span> <span> &nbsp$ <span id="current_price"> 0000</span></span> </h5>
+    </div>
+  </div>
         
 <style>
     .btn{
@@ -28,18 +39,59 @@
         <br>
     
         <body style="background-color: lightblue;">
-            <p style="display: flex; justify-content: center; font-size: xx-large;">THIS IS THE LIST OF COIN AT SUPPORT LEVEL OF_<span style="color: white;">50MA </span>_ AND IN TIME FRAME OF_<span style="color: white;">4-HOUR</span> </p>
+            <p > <h4 style="display: flex; justify-content: center; color: green;">LIST OF COINS </h4> </span> </p>
             <br>
             <div style="display: flex; justify-content: center;"> <h3 style="padding-left: 1vw;">{{result}}</h3></div>
            
             <br>
             <br>
-            <h4 style="display: flex;justify-content: center;">THIS WILL TAKE HARDLY 1 MINUTES TO FETCH NEW DATA AFTER REFRESING PAGE </h4>
-            <div style="display: flex; justify-content: center;">
+            <h4 style="display: flex;justify-content: center;">THIS WILL TAKE 1 MINUTUE TO FETCH DATA</h4>
+           <!-- <div style="display: flex; justify-content: center;">
                 <a href="/crypto_analysis"><button  class="btn" style="background-color: goldenrod; color: white; border-radius: 5px;" >REFRESH</button></a>
                 <a href="/graph"><button style="border-radius: 5px; margin-left: 1vw;" type="button" class="btn btn-success">BACK</button>  </a>
 
             </div>
+            -->
+            <style>
+              .main_button{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+
+              }
+              .back{
+                padding: 1%;
+              }
+              .back a{
+                color: white;
+                text-decoration: none;
+                font-size: larger;
+              }
+            </style>
+
+            <div class="main_button">
+                <div class="back">
+                    <button class="btn-1"><a href="/graph">Back</a></button>
+
+                </div>
+                <div class="back">
+                    <button class="btn-1"><a href="/crypto_analysis">Refresh <span class="load loading"></span></a></button>
+
+                </div>
+            </div>
+
+            
+                
+               
+
+            <!-- <div style="display: flex; align-content: center; justify-content: center; flex-direction: row;">
+                <div style="margin: 10px">  <a href="/crypto_analysis"> <button> REFRESH <span class="load loading"></span></button></a>
+                <div style="margin: 10px">  <a href="/graph"> <button>BACK<span class="load loading"></span></button></a>
+
+            </div> -->
+
+
            
         </body>
        

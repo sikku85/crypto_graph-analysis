@@ -4,15 +4,37 @@
 
 <header
   class="masthead"
-  style="background-size: cover; background-image: url('{{url_for('static',filename='assets/img/home-bg.jpg ')}}')"
+  style="background-size: cover; background-image: url('{{url_for('static',filename='assets/img/home-bg.jpg ')}}')";
 >
 
   <div class="container position-relative px-4 px-lg-5">
     <div class="row gx-4 gx-lg-5 justify-content-center">
       <div class="col-md-10 col-lg-8 col-xl-7">
         <div class="site-heading">
-          <h1 >{{params['blog_headName']}}</h1>
-          <span style="color: beige; padding-left: 20vw; font-family: 'Send Flowers', cursive; font-size: xx-large ;font-weight: bold;"  class="subheading">Free To ask any Time</span>
+
+          <!-- search box -->
+          <div class="wrap">
+            <div class="search" style="padding: 10px;">
+               <input type="text" class="searchTerm" id="textarea" placeholder="Entre coin name to get Their current_price " style=" font-weight: bolder; color: black;">
+               <button type="submit" class="searchButton" id="buttonsearch">
+                 <i class="fa fa-search"></i>
+              </button>
+            </div>
+            <div class="current_price">
+              <h5><span id="title">Btc: </span> <span> &nbsp$ <span id="current_price"> 0000</span></span> </h5>
+            </div>
+         </div>
+
+          <!-- search box end here -->
+
+
+          <div class="animation">
+
+            <h1 > {{params['blog_headName']}}</h1>
+          </div>
+
+         
+          <span style="color: beige; padding-left: 20vw; font-family: 'Send Flowers', cursive; font-size: xx-large ;font-weight: bold;"  class="subheading"><i class="fa-solid fa-arrow-right"></i> Enjoy Yur Day</span>
           <span class="site-heading"
             ><p style="font-size: xx-large; display: flex; justify-content:space-around; color: lightgreen ">
             
@@ -27,9 +49,17 @@
                 }
               </style>
              <div style="display: flex; justify-content:center;flex-direction: row;">
-               <div id="symbol" class="size" style="margin-right: 10px;">BTCUSDT</div>
-               <div id="price" class="size">00000</div>
+               <div id="symbol" class="size" style="margin-right: 10px; font-weight: bold;">BTCUSDT </div>
+               <div id="price" class="size">00.00 </div>
+               <div id="changes" class="size" style="margin-left: 3%"> 0.0 </div>
+               <div class="size" style="margin-left: 1%">%</div>
              </div> 
+             <div style="display: flex; justify-content:center;flex-direction: row;">
+              <div id="symbol2" class="size" style="margin-right: 10px; font-weight: bold;">ETHUSDT</div>
+              <div id="price2" class="size">00.00 </div>
+              <div id="changes2" class="size" style="margin-left: 3%"> 0.0 </div>
+              <div class="size" style="margin-left: 1%">%</div>
+            </div> 
             </p>
            
            
@@ -53,7 +83,7 @@
       <div class="post-preview">
         <a href="/post/{{post.slug}}">
           <h2 class="post-title">
-            {{ post.title }}
+            {{ post.title }} 
           </h2>
           <h3 class="post-subtitle">
             {{post.tagline}}
@@ -66,9 +96,13 @@
           on {{post.date}}
         </p>
       </div>
+
+      
       
       
       {% endfor %}
+
+
 
 
       <hr class="my-4" />

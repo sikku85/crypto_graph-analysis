@@ -12,10 +12,8 @@ import requests
 from os import name
 from re import X
 import datetime
-
-
-
 from flask_mail import Mail
+
 local_server = True
 
 API="P2yrxGhNsaxz58CsbTsMdS5PTj6gu3fw8f0lCjJtU6e8Qkzr6Sn4UEwOjnkBlmTk"
@@ -91,6 +89,8 @@ def Home():
         page=1
     page=int(page)
     posts=posts[(page-1)*int(params['no_of_posts']):(page-1)*int(params['no_of_posts'])+int(params['no_of_posts'])]
+    # posts=posts[(len(posts)-(params['no_of_posts']))-(len(posts)-page):(len(posts)-(params['no_of_posts']-2))-(len(posts)-page)]
+
     if(page==1):
         prev="#"
         next="/?page="+str(page+1)
@@ -116,6 +116,7 @@ def post_route(post_slug):
 def about():
     return render_template('about.html', params=params)
    # ---------------------------------------------------------------------------
+
 @app.route("/posting/<string:post_slug>", methods=['GET'])
 def post_rout(post_slug):
     post = Posts.query.filter_by(slug=post_slug).first()
@@ -251,7 +252,8 @@ def crypto_analysis():
   #print(float(k))
   if(float(k)<=0.5 and float(k)>=0 ):
    # telegram_bot_sendtext(dict['COINS'])
-    analysis_result.append(dict['COINS'])
+    if(dict['COINS'] not in analysis_result):
+     analysis_result.append(dict['COINS'])
 
  prices = client.get_all_tickers()
  usdt=[]
@@ -269,10 +271,7 @@ def crypto_analysis():
    _EMA(usdt[i],50)
   except:
     continue
-
-
-
- result=analysis_result
+ result=(analysis_result)
  return render_template('crypto_analysis.html',params=params,post=post,result=result)
 
 
@@ -292,9 +291,9 @@ def cryto_analysis2():
         k=(float(EMA[len(EMA)-1])-float(EMA2[len(EMA)-1]))/float(EMA[len(EMA)-1])*100
 
         if(float(k)<=0.05 and float(k)>=0):
-          analysis_result.append(str('[')+str(coin)+":RSI(14)Val:"+str(RSI[len(RSI)-1])+str(']'))
+            if(str(coin) not in analysis_result):
+              analysis_result.append(str('[')+str(coin)+":RSI(14)Val:"+str(RSI[len(RSI)-1])+str(']'))
     
-
     prices = client.get_all_tickers()
     usdt=[]
     top=int(1000)
@@ -305,17 +304,68 @@ def cryto_analysis2():
        usdt.append(datasymbol.head(top)['symbol'][i])
    
      i=i+1
-    
-
     for i in range(0,len(usdt)):
      try:
       _EMA(usdt[i],50,13)
      except:
        continue
-
-
-
     return render_template('crypto_analysis2.html', params=params, post=post,analysis_result=analysis_result)
+
+
+
+
+@app.route("/crypto_analysis3")
+def crypto_analysis3():
+ analysis_result.clear()
+
+
+ def _EMA(name,period):
+  coin=name
+  time_Period=int(period)
+  klines = client.get_historical_klines(coin, Client.KLINE_INTERVAL_4HOUR, "20 day ago UTC")
+  data=pd.DataFrame(klines)
+  EMA=tb.MA(data[4], time_Period)
+
+  coin_name,current_price,EMA_c=[],[],[]
+  coin_name.append(coin)
+  current_price.append(float(data[4][len(data)-1]))
+  EMA_c.append(EMA[len(EMA)-1])
+  dict={
+    "COINS":coin_name,
+    "PRICE":current_price,
+    f"EMA({time_Period})":EMA_c
+  }
+ 
+  data=pd.DataFrame(dict)
+  k=(float((data['PRICE']-data[f"EMA({time_Period})"]))/data['PRICE'])*100
+  #print(float(k))
+  if(float(k)<=0.4 and float(k)>=0 ):
+   # telegram_bot_sendtext(dict['COINS'])
+    if(dict['COINS'] not in analysis_result):
+     analysis_result.append(dict['COINS'])
+
+ prices = client.get_all_tickers()
+ usdt=[]
+ top=int(1000)
+ datasymbol=pd.DataFrame(prices)
+ i=0
+ while(i<top):
+  if(datasymbol.head(top)['symbol'][i]).endswith("USDT"):
+    usdt.append(datasymbol.head(top)['symbol'][i])
+   
+  i=i+1
+
+ for i in range(0,len(usdt)):
+  try:
+   _EMA(usdt[i],100)
+  except:
+    continue
+ result=(analysis_result)
+ return render_template('crypto_analysis3.html',params=params,post=post,result=result)
+
+
+
+
 
 
 @app.route("/graph")

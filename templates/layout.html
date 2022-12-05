@@ -10,6 +10,7 @@
     <meta name="author" content="" />
     <title>{{params['blog_headName']}}</title>
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+    
     <!-- Font Awesome icons (free version)-->
     <script
       src="https://use.fontawesome.com/releases/v6.1.0/js/all.js"
@@ -31,16 +32,37 @@
       href="{{url_for('static',filename='css/styles.css')}}"
       rel="stylesheet"
     />
+    <link
+      href="{{url_for('static',filename='css/buttonstyle.css')}}"
+      rel="stylesheet"
+    />
+    <link
+    href="{{url_for('static',filename='css/button_code_pen.css')}}"
+    rel="stylesheet"
+  />
     <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Send+Flowers&display=swap" rel="stylesheet">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@600;900&family=Rubik+Moonrocks&family=Send+Flowers&display=swap" rel="stylesheet">
-
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
-  <body style="background-color: silver;">
+  <body style="background-color: white;">
     <!-- Navigation-->
+
+    
+
+
+
+
+
+
+
+
+
+
+
 
     
     <nav class="navbar navbar-expand-lg " id="mainNav">
@@ -62,37 +84,59 @@
           <ul class="navbar-nav ms-auto py-4 py-lg-0">
             <li class="nav-item">
               <a class="nav-link px-lg-3 py-3 py-lg-4" href="/"
-                >Home</a
+                >Home <i class="fa-solid fa-house"></i></a
               >
             
             
             <li class="nav-item">
               <a class="nav-link px-lg-3 py-3 py-lg-4" href="/contact"
-                >Contact</a
+                >Contact <i class="fa-solid fa-address-book"></i></a
               >
             </li>
             <li class="nav-item">
               <a class="nav-link px-lg-3 py-3 py-lg-4" href="/dashboard"
-                >LOGIN</a
+                >Login <i class="fa-solid fa-right-to-bracket"></i></a
               >
             </li>
             <li class="nav-item">
               <a class="nav-link px-lg-3 py-3 py-lg-4" href="/graph"
-                >GRAPH ANALYSIS</a
+                >Graph Analysis <i class="fa-solid fa-chart-simple"></i></a
               >
             </li>
             <li class="nav-item">
               <a class="nav-link px-lg-3 py-3 py-lg-4" href="/notes"
-                >TAKE NOTES</a
+                >Take Notes <i class="fa-solid fa-note-sticky"></i></a
               >
             </li>
           </ul>
         </div>
       </div>
     </nav>
+    
+
+    
 
     {% block body %} {% endblock %}
+    <style>
+   
+    </style>
 
+
+    
+  <footer id="footer">
+    <div class="main" style="display: flex; justify-content: center;">
+      <div class="icon"><a href="{{params['facebook_url']}}" target="_blank"><i class="fa-brands fa-facebook"></i></a></div>
+      <div class="icon"><a href="{{params['twitter_url']}}"><i class="fa-brands fa-twitter"></i></a></div>
+      <div class="icon"><a href="{{params['github_url']}}" target="_blank"><i class="fa-brands fa-github"></i></a></div>
+    </div>
+    <div class="copyright">
+      <div>
+        <p >Company Name <i class="fa-solid fa-at"></i> Mr.kumar © 2018</p>
+      </div>
+    </div>
+  </footer>
+
+<!-- 
     <footer class="">
       <div class="container px-4 px-lg-5">
         <div class="row gx-4 gx-lg-5 justify-content-center">
@@ -101,7 +145,7 @@
               <li class="list-inline-item">
                 <a href="{{params['twitter_url']}}" target="_blank">
                   <span class="fa-stack fa-lg">
-                    <i class="fas fa-circle fa-stack-2x"></i>
+                    <i class="fas fa-circle "></i>
                     <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
                   </span>
                 </a>
@@ -109,7 +153,7 @@
               <li class="list-inline-item">
                 <a href="{{params['facebook_url']}}" target="_blank">
                   <span class="fa-stack fa-lg">
-                    <i class="fas fa-circle fa-stack-2x"></i>
+                    <i class="fas fa-circle "></i>
                     <i class="fab fa-facebook-f fa-stack-1x fa-inverse"></i>
                   </span>
                 </a>
@@ -117,25 +161,40 @@
               <li class="list-inline-item">
                 <a href="{{params['github_url']}}" target="_blank">
                   <span class="fa-stack fa-lg">
-                    <i class="fas fa-circle fa-stack-2x"></i>
+                    <i class="fas fa-circle "></i>
                     <i class="fab fa-github fa-stack-1x fa-inverse"></i>
                   </span>
                 </a>
               </li>
             </ul>
             <div class="small text-center text-muted fst-italic">
-              kumar_blog
+              KUMAR_BLOG
             </div>
           </div>
         </div>
       </div>
-    </footer>
+    </footer> -->
     <!-- Bootstrap core JS-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Core theme JS-->
+   
+    <script>
+      const btns = document.querySelectorAll('button');
+    btns.forEach((items)=>{
+        items.addEventListener('click',(evt)=>{
+            evt.target.classList.add('activeLoading');
+            
+        }) 
+    })
+    </script>
+    
+    <script src="https://kit.fontawesome.com/7e2d8be808.js" crossorigin="anonymous"></script>
     <script src="{{url_for('static',filename='js/scripts.js')}}"></script>
     <script src="{{url_for('static',filename='js/price.js')}}"></script>
     <script src="{{url_for('static',filename='js/notes.js')}}"></script>
+    <script src="{{url_for('static',filename='js/searchbox.js')}}"></script>
+    
+
 
 
 

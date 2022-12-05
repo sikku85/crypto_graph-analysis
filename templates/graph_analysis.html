@@ -8,7 +8,7 @@
     <div class="">
       <div class="">
         <div class="post-heading">
-          <h1 style="display: flex; justify-content: center">MA SUPPORT</h1>
+          <h1 style="display: flex; justify-content: center">Holding Support</h1>
         
         </div>
       </div>
@@ -17,70 +17,48 @@
   
 </header>
 
-
-<!-- Post Content-->
-<style>
-  .btn {
-    opacity: 1;
-    transition: 0.3s;
-   margin-bottom: 2vh;
-    border-radius: 5px;
-  }
-  .btn:hover {
-    opacity: 0.6;
-  }
-  .fa-circle-notch{
-      display: none;
-  }
-
-</style>
-
-<br />
 <h4 style="display: flex; justify-content: center">
   IT WILL HARDLY TAKE 1 MINUTES TO FETCH DATA
 </h4>
-<br />
-<div
-  style="
-    display: flex;
-    justify-content: center;
-    flex-direction: row;
-    align-items: center;
-    text-align: center;
-  "
->
-  <div style="display: flex;  flex-direction: column">
-    <div>
-    <a href="/crypto_analysis"><button id="cli" type="button" class="btn btn-info">click</button> </a> 
-   </div>
-   <div>
-    <a href="/crypto_analysis2"><button id="cli2"  type="button" class="btn btn-info">click</button> </a>
-   </div>
+<div class="wrap">
+  <div class="search" style="padding: 10px;">
+     <input type="text" style="color: black;" class="searchTerm" id="textarea" placeholder="coins to get current Price (BTCUSDT)">
+     <button type="submit" class="searchButton" id="buttonsearch">
+       <i class="fa fa-search"></i>
+    </button>
   </div>
-  <div style="display: flex;  flex-direction: column;">
-    <p style=" margin-top: 1vh;">Coins at Support level of 50 MA</p>
-    <p  style="margin-left: 2vw; margin-top: 1vh;">Coins at Support level of 50 EMA and 13 EMA</p>
+  <div class="current_price">
+    <h5 style="color: white ; display: flex; justify-content: center;" ><span id="title">Btc: </span> <span> &nbsp$ <span id="current_price"> 0000</span></span> </h5>
   </div>
-
-  
-
-  <script>
-    var k = document.getElementById("cli");
-    k.addEventListener("click", function () {
-      this.disabled = true;
-      k.classList.remove("hover");
-
-    });
-
-    var k = document.getElementById("cli2");
-    k.addEventListener("click", function () {
-      this.disabled = true;
-      k.classList.remove("hover");
-    });
-  </script>
-
 </div>
-<br />
-<br />
+<div style="display: flex;  flex-direction: column;background-color: red;">
+  <div  style="display: flex;  flex-direction: column; background-color: aliceblue; text-align: center;">
+    <p>Coins at Support level of 50 MA IN 4 Hour TimeFrame</p>
+    <div style="margin: 10px">  <a href="/crypto_analysis"> <button class="btn-5"> click <span class="load loading"></span></button></a>
+    </div>
+
+
+  </div>
+ 
+  <div  style="display: flex;  flex-direction: column; background-color: aliceblue; text-align: center;">
+    <p>Coins at Support level of 50 EMA and 13 EMA IN 15 Minute TimeFrame</p>
+    <div style="margin: 10px">  <a href="/crypto_analysis2"> <button class="btn-15"> click <span class="load loading"></span></button></a>
+    </div>
+
+
+  </div>
+  
+  <div  style="display: flex;  flex-direction: column; background-color: aliceblue; text-align: center;">
+    <p>Coins at Support level of 100 MA IN 4 Hour TimeFrame</p>
+    <div style="margin: 10px">  <a href="/crypto_analysis3"> <button class="btn-14"> click <span class="load loading"></span></button></a>
+    </div>
+
+
+  </div>
+ 
+  
+</div>
+
+
 
 {% endblock %}
